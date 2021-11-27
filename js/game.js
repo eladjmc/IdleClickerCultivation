@@ -11,20 +11,5 @@ export default class Game {
   cultivationTimeInterval() {
     setInterval(() => this.player.cultivate(), 500);
   }
-  // clickOnMonster() {
-  //   this.battleSystem.selectors.monsterPic.addEventListener("click", () => {
-  //     if(this.attackSidePic){
-  //     this.battleSystem.selectors.slashOne.style.visibility = "visible";
-  //     }
-  //     else{
-  //     this.battleSystem.selectors.slashTwo.style.visibility = "visible";
-  //     }
-  //     setTimeout(() => {
-  //       this.battleSystem.selectors.slashOne.style.visibility = "hidden";
-  //       this.battleSystem.selectors.slashTwo.style.visibility = "hidden";
-  //     }, 50);
-  //     this.attackSidePic=!this.attackSidePic;
-  //     this.dmgMonster();
-  //   });
-  // }
+
 }

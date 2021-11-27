@@ -5,7 +5,7 @@
   "main": "js/main.js",
   "scripts": {
     "test": "test",
-    "build": "babel js -d lib"
+    "build": "babel jsgit branch -M main -d lib"
   },
   "author": "Elad",
   "license": "ISC",

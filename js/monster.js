@@ -2,11 +2,11 @@ export default class Monster {
   constructor(hp) {
     this.hp = hp;
     this.maxHp = hp;
-    this.battleXpReward = 0;
+    this.battleXpReward=0;
     this.spiritStonesReward = hp * 0.01;
   }
   setBattleXPreward(increasedBy) {
-    this.battleXpReward += increasedBy;
+    this.battleXpReward += increasedBy*0.5;
   }
 
   receiveDmg(dmgAmount) {

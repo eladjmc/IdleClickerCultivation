@@ -30,7 +30,7 @@ export default class Player {
     this.xp = 0;
     this.maxXp = 10;
     this.baseCultivationXpGain = 0.1;
-    this.fightXp = 3;
+    this.fightXp = 0;
     this.maxFightXp = 10;
     this.level = 1;
     this.realm = 1;
@@ -100,8 +100,8 @@ export default class Player {
       this.selectors.header.realmSubLevel.innerHTML = "  " + "S";
     }
     this.selectors.header.talentLevel.innerHTML = this.getTalentLevelName();
-    this.selectors.header.spiritStonesAmount.innerHTML =
-      " " + this.spiritStones;
+    this.selectors.header.spiritStonesAmount.innerHTML = (Math.round
+    (this.spiritStones*100)/100);
   }
 
   updatePlayerStatusUI() {
@@ -109,7 +109,7 @@ export default class Player {
       Math.round(this.calcClickPower() * 100) / 100;
     this.selectors.playerStatus.exp.innerHTML = this.xp;
     this.selectors.playerStatus.maxExp.innerHTML = this.maxXp;
-    this.selectors.playerStatus.battleExp.innerHTML = this.fightXp;
+    this.selectors.playerStatus.battleExp.innerHTML = Math.round(100*this.fightXp)/100;
     this.selectors.playerStatus.maxBattleExp.innerHTML = this.maxFightXp;
   }
 
@@ -219,5 +219,21 @@ export default class Player {
     this.selectors.playerStatus.breakThroughButton.addEventListener("click",()=>{
       this.clickedBreakthroughButton();
     });
+  }
+  winBattle(xpReward,SpiritStonesReward){
+    this.rewardsBattleXp(xpReward)
+    this.spiritStones+=SpiritStonesReward;
+    this.updateFullUI();
+  }
+  rewardsBattleXp(xpReward){
+    const totalXp=xpReward+this.fightXp;
+    if(totalXp>=this.maxFightXp){
+      this.fightXp=0;
+      this.level++;
+      this.maxFightXp*=2;
+    }
+    else{
+      this.fightXp=totalXp;
+    }
   }
 }
