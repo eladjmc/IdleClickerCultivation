@@ -1,5 +1,6 @@
 import Monster from "./monster.js";
 export default class BattleSystem {
+
   selectors = {
     slashOne: document.querySelector("#slash_1"),
     slashTwo: document.querySelector("#slash_2"),
@@ -12,6 +13,7 @@ export default class BattleSystem {
     monsterCurrentHpText: document.querySelector(".hp_current"),
     monsterMaxHpText: document.querySelector(".hp_max"),
   };
+
   constructor(player) {
     this.attackSidePic = true;
     this.player = player;
@@ -34,17 +36,21 @@ export default class BattleSystem {
       this.dmgMonster();
     });
   }
+
   createBattle() {
     this.monster = new Monster(this.calcHpForMonster());
-    this.selectors.monsterMaxHpText.innerHTML=(Math.round(this.monster.maxHp * 100) / 100);
+    this.selectors.monsterMaxHpText.innerHTML = Math.round(this.monster.maxHp * 100) / 100;
     this.monster.setBattleXPreward(this.stage * 10);
   }
+
   calcHpForMonster() {
     return this.stage * 10;
   }
+
   rewardPlayer() {
     this.player.spiritStones += this.monster.spiritStonesReward;
   }
+
   dmgMonster() {
     console.log("1122");
     var hpLeft = this.monster.receiveDmg(this.player.calcClickPower());
