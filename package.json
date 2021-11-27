@@ -1,0 +1,17 @@
+{
+  "name": "idleclickercultivation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "test",
+    "build": "babel js -d lib"
+  },
+  "author": "Elad",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0"
+  }
+}

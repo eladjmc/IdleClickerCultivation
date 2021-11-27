@@ -1,0 +1,475 @@
+body,
+html {
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  overflow: hidden;
+  background-color: rgb(22, 138, 173);
+}
+main {
+  height: 85%;
+  width: 100%;
+}
+.header_containers {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: rgb(217, 237, 146);
+  font-size: 1.5rem;
+}
+.portrait_container > img {
+  height: fit-content;
+  width: 5.2rem;
+  border: 3px solid rgb(30, 96, 145);
+}
+.header_containers {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+.other_info_container {
+  width: 45%;
+  height: 100%;
+  color: rgb(217, 237, 146);
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.sub_info_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sub_talent_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.upgrade_talent_button {
+  width: 2rem;
+  height: 1.2rem;
+  color: rgb(217, 237, 146);
+  background-color: rgb(16, 82, 102);
+  border-radius: 4px;
+  border: 1px solid black;
+  margin-top: 0.5rem;
+}
+.upgrade_talent_button:hover {
+  color: rgb(16, 82, 102);
+  background-color: rgb(217, 237, 146);
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.upgrade_talent_button:active {
+  background-color: rgb(16, 82, 102);
+  color: rgb(217, 237, 146);
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main_container {
+  display: grid;
+  grid-template-columns: [first] 25% [line2] 45% [line3] 30% [end];
+  background-color: rgb(118, 200, 147);
+  height: 100%;
+  width: 100%;
+}
+.player_fight {
+  display: grid;
+  grid-template-rows: [first] 80%[line2] 20%[end];
+}
+
+.interface_container {
+  background-color: rgb(217, 237, 146);
+  border: 3px dotted rgb(89, 153, 111);
+  margin: 2px;
+  display: grid;
+  grid-template-rows: [first] 25%[line2] 25% [line3] 25% [line4] 25%[end];
+}
+
+.interface_texts {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(63, 110, 81);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.interface_text_line_1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.interface_line_4 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.acknowledged_button {
+  width: 3rem;
+  color: rgb(217, 237, 146);
+  background-color: rgb(121, 133, 80);
+  border-radius: 4px;
+  border: 1px solid black;
+  margin-right: 5px;
+}
+.acknowledged_button:hover {
+  background-color: rgb(217, 237, 146);
+  color: rgb(121, 133, 80);
+}
+.acknowledged_button:active {
+  background-color: rgb(121, 133, 80);
+  color: white;
+}
+
+.player_cultivation {
+  background-color: rgb(22, 138, 173);
+}
+.inventory_shop {
+  background-color: rgb(22, 138, 173);
+}
+.player_cultivation {
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.player_img {
+  width: 78%;
+  height: 40%;
+  position: relative;
+}
+
+.exp_gain_text {
+  position: absolute;
+  color: rgb(255, 166, 0);
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: "Brush Script MT", cursive;
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0;
+}
+.exp_gain_text#xp1 {
+  top: 15%;
+  left: 15%;
+  transform: rotate(-15deg);
+}
+.exp_gain_text#xp2 {
+  top: 15%;
+  left: 60%;
+  transform: rotate(30deg);
+}
+.exp_gain_text#xp3 {
+  top: 45%;
+  left: 50%;
+  transform: rotate(20deg);
+}
+
+.player_img > img {
+  width: 100%;
+  height: 100%;
+}
+.player_cultivation_base {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 6px;
+}
+.cultivation_base_bar_container {
+  color: #000 !important;
+  background-color: #f1f1f1 !important;
+  border-radius: 16px;
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 20px;
+  display: flex;
+}
+.cultivation_base_text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+}
+.cultivation_base_bar {
+  position: absolute;
+  left: 0%;
+  height: 100%;
+  color: #fff !important;
+  background-color: #38ad5b;
+  padding: 0.1% 0.5%;
+  border-radius: 16px;
+  width: 50%;
+}
+#cultivation_xp_img {
+  width: 27px;
+  position: absolute;
+  left: 21%;
+}
+.player_power_xp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 6px;
+}
+.player_power_bar_container {
+  color: #000 !important;
+  background-color: #f1f1f1 !important;
+  border-radius: 16px;
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 20px;
+}
+.power_xp_text {
+  position: absolute;
+  left: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.power_xp_bar {
+  color: #fff !important;
+  background-color: #c2e24e !important;
+  padding: 0.1% 0.5%;
+  border-radius: 16px;
+  width: 50%;
+}
+
+#power_xp_img {
+  width: 27px;
+  position: absolute;
+  left: 21%;
+}
+.breakthrough_button_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
+}
+.player_realm_breakthrough_button {
+  background-color: #59e73d;
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+  color: #000000;
+  display: flex;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: 0.75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  width: 50%;
+  max-width: 200px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-5deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 17px;
+}
+
+.player_realm_breakthrough_button:focus {
+  outline: 0;
+}
+
+.player_realm_breakthrough_button:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.player_realm_breakthrough_button:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+.player_realm_breakthrough_button:active {
+  background-color: red;
+}
+@media (min-width: 768px) {
+  .player_realm_breakthrough_button {
+    padding: 0.75rem 3rem;
+    font-size: 1.25rem;
+  }
+
+  #cultivation_icon_img {
+    width: 36px;
+  }
+  #level_icon_img {
+    width: 30px;
+    margin-right: 3px;
+  }
+  .power {
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 3rem;
+    font-family: "Brush Script MT", cursive;
+  }
+  .click_power {
+    font-size: 1.9rem;
+    color: rgb(217, 237, 146);
+    font-weight: bold;
+    margin: -6%;
+  }
+}
+.battle_header {
+  display: flex;
+  justify-content: space-between;
+}
+.monster_container {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+#monster_pic {
+  height: 60%;
+}
+.xp_reward_text_container {
+  position: absolute;
+  color: rgb(17, 75, 0);
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: "Brush Script MT", cursive;
+  top: 25%;
+  left: 10%;
+  transform: rotate(-30deg);
+  opacity: 0;
+}
+.spirit_stones_reward_text_container {
+  position: absolute;
+  color: rgb(17, 75, 0);
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: "Brush Script MT", cursive;
+  top: 20%;
+  right: 10%;
+  transform: rotate(30deg);
+  opacity: 0;
+}
+
+.stage_back_button{
+  width: 4rem;
+  height: 2rem;
+  color: rgb(217, 237, 146);
+  background-color: rgb(76, 131, 95);
+  border: 2px solid rgb(18, 58, 8);
+  margin-left: 5px;
+  margin-top: 4px;
+}
+.stage_back_button:hover {
+  background-color: rgb(217, 237, 146);
+  color: rgb(121, 133, 80);
+}
+.stage_back_button:active {
+  background-color: rgb(121, 133, 80);
+  color: white;
+}
+.stage_next_button{
+  width: 4rem;
+  height: 2rem;
+  color: rgb(217, 237, 146);
+  background-color: rgb(76, 131, 95);
+  border: 2px solid rgb(18, 58, 8);
+  margin-right: 5px;
+  margin-top: 4px;
+}
+.stage_next_button:hover {
+  background-color: rgb(217, 237, 146);
+  color: rgb(121, 133, 80);
+}
+.stage_next_button:active {
+  background-color: rgb(121, 133, 80);
+  color: white;
+}
+.stage_level{
+  font-family: "Brush Script MT", cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(29, 49, 36);
+}
+
+
+.hp_bar_container {
+  color: #000 !important;
+  background-color: #f1f1f1 !important;
+  border-radius: 16px;  
+  position: relative;
+  width: 70%;
+  height: 20px;
+  display: flex;
+  /* margin-bottom: 30px; */
+}
+.hp_text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+}
+.hp_bar {
+  position: absolute;
+  left: 0%;
+  height: 100%;
+  color: #fff !important;
+  background-color: #ad3838;
+  padding: 0.1% 0.5%;
+  border-radius: 16px;
+  width: 100%;
+}
+#slash_1{
+  position: absolute;
+  width: 120px;
+  left: 38%;
+  top: 40%;
+  z-index: 5;
+  visibility: hidden;
+  transition: all 0.2s ease-out;
+}
+
+#slash_2{
+  position: absolute;
+  width: 120px;
+  left: 38%;
+  top: 40%;
+  z-index: 5;
+  visibility: hidden;
+  transition: all 0.2s ease-out;
+  
+}
