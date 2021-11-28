@@ -7,6 +7,8 @@ export default class Game {
     this.player.updateFullUI();
     this.cultivationTimeInterval();
     this.battleSystem.clickOnMonster();
+    this.battleSystem.clickNextStage();
+    this.battleSystem.clickPerviousStage();
   }
   cultivationTimeInterval() {
     setInterval(() => this.player.cultivate(), 500);

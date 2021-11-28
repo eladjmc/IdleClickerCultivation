@@ -14,7 +14,7 @@ header {
   justify-content: space-between;
   align-items: flex-start;
   overflow: hidden;
-  background-color: rgb(22, 138, 173);
+  background-color: rgb(27, 58, 75);
 }
 main {
   height: 85%;
@@ -24,7 +24,7 @@ main {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  color: rgb(217, 237, 146);
+  color: rgb(199, 217, 255);
   font-size: 1.5rem;
 }
 .portrait_container > img {
@@ -43,7 +43,7 @@ main {
 .other_info_container {
   width: 45%;
   height: 100%;
-  color: rgb(217, 237, 146);
+  color: rgb(199, 217, 255);
   font-size: 1.5rem;
   display: flex;
   flex-direction: row;
@@ -58,33 +58,32 @@ main {
 .sub_talent_container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
 }
 .upgrade_talent_button {
-  width: 2rem;
-  height: 1.2rem;
-  color: rgb(217, 237, 146);
-  background-color: rgb(16, 82, 102);
-  border-radius: 4px;
-  border: 1px solid black;
-  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+  border: 2px solid rgb(26, 1, 41);
+  border-radius: 20px;
+  margin-left: 0.5rem;
 }
 .upgrade_talent_button:hover {
-  color: rgb(16, 82, 102);
-  background-color: rgb(217, 237, 146);
-  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  color: rgb(221, 222, 255);
+  background-color: rgb(108, 75, 151);
 }
 .upgrade_talent_button:active {
-  background-color: rgb(16, 82, 102);
-  color: rgb(217, 237, 146);
-  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
 }
 
 .main_container {
   display: grid;
   grid-template-columns: [first] 25% [line2] 45% [line3] 30% [end];
-  background-color: rgb(118, 200, 147);
+  background-color: rgb(27, 58, 75);
   height: 100%;
   width: 100%;
 }
@@ -94,8 +93,8 @@ main {
 }
 
 .interface_container {
-  background-color: rgb(217, 237, 146);
-  border: 3px dotted rgb(89, 153, 111);
+  background-color: rgb(77, 25, 77);
+  border: 3px dotted rgb(0, 100, 102);
   margin: 2px;
   display: grid;
   grid-template-rows: [first] 25%[line2] 25% [line3] 25% [line4] 25%[end];
@@ -105,7 +104,7 @@ main {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: rgb(63, 110, 81);
+  color: rgb(255, 226, 255);
   font-size: 1.3rem;
   font-weight: bold;
 }
@@ -123,29 +122,29 @@ main {
 }
 .acknowledged_button {
   width: 3rem;
-  color: rgb(217, 237, 146);
-  background-color: rgb(121, 133, 80);
+
+  background-color: rgb(248, 221, 255);
+  color: rgb(49, 34, 68);
   border-radius: 4px;
   border: 1px solid black;
   margin-right: 5px;
 }
 .acknowledged_button:hover {
-  background-color: rgb(217, 237, 146);
-  color: rgb(121, 133, 80);
+  color: white;
+  background-color: rgb(49, 34, 68);
 }
 .acknowledged_button:active {
-  background-color: rgb(121, 133, 80);
-  color: white;
+  background-color: rgb(248, 221, 255);
+  color: rgb(49, 34, 68);
 }
 
 .player_cultivation {
-  background-color: rgb(22, 138, 173);
+  background-color: rgb(0, 119, 121);
 }
 .inventory_shop {
-  background-color: rgb(22, 138, 173);
+  background-color: rgb(0, 119, 121);
 }
 .player_cultivation {
-  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -325,7 +324,7 @@ main {
   }
 
   #cultivation_icon_img {
-    width: 36px;
+    width: 30px;
   }
   #level_icon_img {
     width: 30px;
@@ -350,18 +349,44 @@ main {
 .battle_header {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .monster_container {
   position: relative;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 100%;
   flex-direction: column;
   align-items: center;
 }
 #monster_pic {
-  height: 60%;
+  height: 65%;
+  animation: shake 5.1s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
 }
+
+
+/*                   Shake picture                       */
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(3deg); }
+}
+
+
+/*                   Shake picture                       */
+
+
 .xp_reward_text_container {
   position: absolute;
   color: rgb(17, 75, 0);
@@ -386,44 +411,49 @@ main {
 }
 
 .stage_back_button{
-  width: 4rem;
-  height: 2rem;
-  color: rgb(217, 237, 146);
-  background-color: rgb(76, 131, 95);
-  border: 2px solid rgb(18, 58, 8);
+  width: 4.5rem;
+  height: 2.5rem;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+  border: 2px solid rgb(26, 1, 41);
   margin-left: 5px;
-  margin-top: 4px;
+  opacity: 0;
+  transition: opacity  0.5s ease-in-out;
 }
 .stage_back_button:hover {
-  background-color: rgb(217, 237, 146);
-  color: rgb(121, 133, 80);
+  background-color: rgb(95, 67, 133);
+  color: rgb(221, 222, 255);
 }
 .stage_back_button:active {
-  background-color: rgb(121, 133, 80);
-  color: white;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
 }
 .stage_next_button{
-  width: 4rem;
-  height: 2rem;
-  color: rgb(217, 237, 146);
-  background-color: rgb(76, 131, 95);
-  border: 2px solid rgb(18, 58, 8);
+  width: 4.5rem;
+  height: 2.5rem;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+  border: 2px solid rgb(26, 1, 41);
   margin-right: 5px;
-  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 .stage_next_button:hover {
-  background-color: rgb(217, 237, 146);
-  color: rgb(121, 133, 80);
+  background-color: rgb(95, 67, 133);
+  color: rgb(221, 222, 255);
 }
 .stage_next_button:active {
-  background-color: rgb(121, 133, 80);
-  color: white;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
 }
 .stage_level{
-  font-family: "Brush Script MT", cursive;
+  position: absolute;
+  top: -120%;
+  left: 38%;
+  font-family: cursive;
   font-size: 2rem;
   font-weight: bold;
-  color: rgb(29, 49, 36);
+  color: rgb(248, 237, 253);
 }
 
 

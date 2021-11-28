@@ -19,9 +19,6 @@ export default class Player {
       maxExp: document.querySelector(".player_cultivation_xp_max"),
       battleExp: document.querySelector(".player_battle_xp_current"),
       maxBattleExp: document.querySelector(".player_battle_xp_max"),
-      breakThroughButton: document.querySelector(
-        ".player_realm_breakthrough_button"
-      ),
     },
   };
 
@@ -100,8 +97,7 @@ export default class Player {
       this.selectors.header.realmSubLevel.innerHTML = "  " + "S";
     }
     this.selectors.header.talentLevel.innerHTML = this.getTalentLevelName();
-    this.selectors.header.spiritStonesAmount.innerHTML = (Math.round
-    (this.spiritStones*100)/100);
+    this.selectors.header.spiritStonesAmount.innerHTML = (Math.round(this.spiritStones*100)/100);
   }
 
   updatePlayerStatusUI() {
