@@ -6,6 +6,7 @@ export default class Player {
       realmSubLevel: document.querySelector(".realm_level_number"),
       talentLevel: document.querySelector(".talent_level"),
       spiritStonesAmount: document.querySelector(".spirit_Stones_amount"),
+      upgradeTalentButton:document.querySelector(".upgrade_talent_button"),
     },
     playerStatus: {
       breakThroughButton: document.querySelector(
@@ -31,8 +32,8 @@ export default class Player {
     this.maxFightXp = 10;
     this.level = 1;
     this.realm = 1;
-    this.spiritStones = 0;
-    this.talent = 65;
+    this.spiritStones = 1000;
+    this.talent = 1;
     this.BaseClickPower = 0.5;
     this.itemExtraDmg = 0;
     this.itemExtraCultivationXp = 0;
@@ -231,5 +232,17 @@ export default class Player {
     else{
       this.fightXp=totalXp;
     }
+  }
+  clickUpgradeTalentButton(){
+    this.selectors.header.upgradeTalentButton.addEventListener("click",()=>{
+      if(this.spiritStones>=this.calcTalentUpgradePrice()){
+        this.spiritStones-=this.calcTalentUpgradePrice();
+        this.talent++;
+        this.updateHeaderUI();
+      }
+    });
+  }
+  calcTalentUpgradePrice(){
+    return Math.pow(this.talent+(this.talent/100), 1.3)*100
   }
 }

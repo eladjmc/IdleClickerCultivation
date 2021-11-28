@@ -9,9 +9,9 @@ export default class Game {
     this.battleSystem.clickOnMonster();
     this.battleSystem.clickNextStage();
     this.battleSystem.clickPerviousStage();
+    this.player.clickUpgradeTalentButton();
   }
   cultivationTimeInterval() {
     setInterval(() => this.player.cultivate(), 500);
   }
-
 }
