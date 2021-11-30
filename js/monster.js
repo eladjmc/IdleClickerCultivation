@@ -2,11 +2,11 @@ export default class Monster {
   constructor(hp) {
     this.hp = hp;
     this.maxHp = hp;
-    this.battleXpReward=0;
+    this.battleXpReward = 0;
     this.spiritStonesReward = hp * 0.01;
   }
   setBattleXPreward(increasedBy) {
-    this.battleXpReward += increasedBy*0.5;
+    this.battleXpReward += increasedBy * 0.5;
   }
 
   receiveDmg(dmgAmount) {
@@ -15,7 +15,7 @@ export default class Monster {
       return 0;
     }
     this.hp -= dmgAmount;
-    return Math.round(this.hp*100)/100;
+    return Math.round(this.hp * 100) / 100;
   }
 
   isDead() {

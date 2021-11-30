@@ -20,7 +20,7 @@ export default class BattleSystem {
     this.attackSidePic = true;
     this.player = player;
     this.stage = 1;
-    this.maxStage=1;
+    this.maxStage = 1;
     this.createBattle();
   }
 
@@ -39,43 +39,42 @@ export default class BattleSystem {
       this.dmgMonster();
     });
   }
-  clickNextStage(){
-    this.selectors.nextStageButton.addEventListener("click", ()=> {
-      if(this.stage<this.maxStage){
+  clickNextStage() {
+    this.selectors.nextStageButton.addEventListener("click", () => {
+      if (this.stage < this.maxStage) {
         this.stage++;
         this.createBattle();
-        this.selectors.stageText.innerHTML=this.stage;
-        if(this.stage===this.maxStage){
-          this.selectors.nextStageButton.disabled=true;
-          this.selectors.nextStageButton.style.opacity="0";
+        this.selectors.stageText.innerHTML = this.stage;
+        if (this.stage === this.maxStage) {
+          this.selectors.nextStageButton.disabled = true;
+          this.selectors.nextStageButton.style.opacity = "0";
         }
       }
-      if(this.stage<this.maxStage){
-        this.selectors.nextStageButton.disabled=false;
-        this.selectors.nextStageButton.style.opacity="1";
+      if (this.stage < this.maxStage) {
+        this.selectors.nextStageButton.disabled = false;
+        this.selectors.nextStageButton.style.opacity = "1";
       }
-      if(this.stage>1){
-        this.selectors.previousStageButton.style.opacity="1";
-        this.selectors.previousStageButton.disabled=false;
+      if (this.stage > 1) {
+        this.selectors.previousStageButton.style.opacity = "1";
+        this.selectors.previousStageButton.disabled = false;
       }
     });
   }
-  clickPerviousStage(){
-    this.selectors.previousStageButton.addEventListener("click", ()=> {
-      if(this.stage>1){
+  clickPerviousStage() {
+    this.selectors.previousStageButton.addEventListener("click", () => {
+      if (this.stage > 1) {
         this.stage--;
         this.createBattle();
-        this.selectors.stageText.innerHTML=this.stage;
-        if(this.stage===1){
-          this.selectors.nextStageButton.disabled=true;
-          this.selectors.previousStageButton.style.opacity="0";
+        this.selectors.stageText.innerHTML = this.stage;
+        if (this.stage === 1) {
+          this.selectors.nextStageButton.disabled = true;
+          this.selectors.previousStageButton.style.opacity = "0";
         }
-        if(this.stage<this.maxStage){
-          this.selectors.nextStageButton.disabled=false;
-          this.selectors.nextStageButton.style.opacity="1";
+        if (this.stage < this.maxStage) {
+          this.selectors.nextStageButton.disabled = false;
+          this.selectors.nextStageButton.style.opacity = "1";
         }
       }
-
     });
   }
 
@@ -85,7 +84,7 @@ export default class BattleSystem {
       Math.round(this.monster.maxHp * 100) / 100;
     this.selectors.monsterCurrentHpText.innerHTML =
       Math.round(this.monster.hp * 100) / 100;
-    this.selectors.monstersHpBar.style.width="100%";
+    this.selectors.monstersHpBar.style.width = "100%";
     this.monster.setBattleXPreward(this.stage * 10);
   }
 
@@ -102,17 +101,48 @@ export default class BattleSystem {
     this.selectors.monsterCurrentHpText.innerHTML = hpLeft;
     this.selectors.monstersHpBar.style.width =
       this.monster.calcHpPercentageLeft() + "%";
-    if(this.monster.isDead()){
+    if (this.monster.isDead()) {
       this.winBattle();
     }
   }
-  winBattle(){
-    this.player.winBattle(this.monster.battleXpReward,this.monster.spiritStonesReward);
+  winBattle() {
+    this.revealRewardTexts();
+    this.player.winBattle(
+      this.monster.battleXpReward,
+      this.monster.spiritStonesReward
+    );
     this.createBattle();
-    if(this.stage===this.maxStage){
+    if (this.stage === this.maxStage) {
       this.maxStage++;
-      this.selectors.nextStageButton.style.opacity="1";
-      this.selectors.nextStageButton.disabled=false;
+      this.selectors.nextStageButton.style.opacity = "1";
+      this.selectors.nextStageButton.disabled = false;
     }
+  }
+  randomizeRewardTextLocation() {
+    this.selectors.battleXpRewardText.style.left =
+      16 + Math.floor(Math.random() * 10) + "%";
+    this.selectors.spiritStonesRewardText.style.right =
+      16 + Math.floor(Math.random() * 10) + "%";
+    this.selectors.battleXpRewardText.style.top =
+      16 + Math.floor(Math.random() * 5) + "%";
+    this.selectors.spiritStonesRewardText.style.top =
+      16 + Math.floor(Math.random() * 5) + "%";
+  }
+  revealRewardTexts() {
+    this.randomizeRewardTextLocation();
+    this.selectors.battleXpRewardText.innerHTML =
+      "XP+" + this.monster.battleXpReward;
+    this.selectors.spiritStonesRewardText.innerHTML =
+      "SS+" + this.monster.spiritStonesReward;
+    this.selectors.battleXpRewardText.style.opacity = "1";
+    this.selectors.spiritStonesRewardText.style.opacity = "1";
+    setTimeout(() => {
+      this.selectors.battleXpRewardText.style.opacity = "0";
+      this.selectors.spiritStonesRewardText.style.opacity = "0";
+      this.selectors.battleXpRewardText.style.left = "25%";
+      this.selectors.spiritStonesRewardText.style.right = "25%";
+      this.selectors.battleXpRewardText.style.top = "15%";
+      this.selectors.spiritStonesRewardText.style.top = "15%";
+    }, 500);
   }
 }

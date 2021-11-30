@@ -6,7 +6,7 @@ export default class Player {
       realmSubLevel: document.querySelector(".realm_level_number"),
       talentLevel: document.querySelector(".talent_level"),
       spiritStonesAmount: document.querySelector(".spirit_Stones_amount"),
-      upgradeTalentButton:document.querySelector(".upgrade_talent_button"),
+      upgradeTalentButton: document.querySelector(".upgrade_talent_button"),
     },
     playerStatus: {
       breakThroughButton: document.querySelector(
@@ -21,9 +21,17 @@ export default class Player {
       battleExp: document.querySelector(".player_battle_xp_current"),
       maxBattleExp: document.querySelector(".player_battle_xp_max"),
     },
+    interFaceOverWrite: {
+      lineOneText: document.querySelector(".interface_text_line_1"),
+      lineTwoText: document.querySelector(".interface_text_line_2"),
+      lineThreeText: document.querySelector(".interface_text_line_3"),
+      lineFourText: document.querySelector(".interface_text_line_4"),
+      acknowledgmentButton: document.querySelector(".acknowledged_button"),
+    },
   };
 
   constructor() {
+    this.selectors.interFaceOverWrite.acknowledgmentButton.disabled = true;
     this.xpFloatLastUsedIndex = 0;
     this.xp = 0;
     this.maxXp = 10;
@@ -33,11 +41,10 @@ export default class Player {
     this.level = 1;
     this.realm = 1;
     this.spiritStones = 1000;
-    this.talent = 1;
+    this.talent = 21;
     this.BaseClickPower = 0.5;
     this.itemExtraDmg = 0;
     this.itemExtraCultivationXp = 0;
-    this.chanceToBreakthrough = 1;
     this.expMultiplayer = 1.4;
     this.canCultivate = true;
     this.addClickToBreakthrough();
@@ -98,7 +105,8 @@ export default class Player {
       this.selectors.header.realmSubLevel.innerHTML = "  " + "S";
     }
     this.selectors.header.talentLevel.innerHTML = this.getTalentLevelName();
-    this.selectors.header.spiritStonesAmount.innerHTML = (Math.round(this.spiritStones*100)/100);
+    this.selectors.header.spiritStonesAmount.innerHTML =
+      Math.round(this.spiritStones * 100) / 100;
   }
 
   updatePlayerStatusUI() {
@@ -106,7 +114,8 @@ export default class Player {
       Math.round(this.calcClickPower() * 100) / 100;
     this.selectors.playerStatus.exp.innerHTML = this.xp;
     this.selectors.playerStatus.maxExp.innerHTML = this.maxXp;
-    this.selectors.playerStatus.battleExp.innerHTML = Math.round(100*this.fightXp)/100;
+    this.selectors.playerStatus.battleExp.innerHTML =
+      Math.round(100 * this.fightXp) / 100;
     this.selectors.playerStatus.maxBattleExp.innerHTML = this.maxFightXp;
   }
 
@@ -193,56 +202,92 @@ export default class Player {
     this.updatePlayerStatusUI();
     this.updateXpBars();
     this.selectors.playerStatus.breakThroughButton.style.visibility = "visible";
-    this.selectors.playerStatus.breakThroughButton.style.opacity="1";
+    this.selectors.playerStatus.breakThroughButton.style.opacity = "1";
+    this.setInterfaceOnBrakeThroughExplanation();
   }
 
   clickedBreakthroughButton() {
     var realmUpgradeFailChance = (this.realm + 1) / 10;
     var randomizeChance = Math.floor(1 + Math.random() * 10);
     if (randomizeChance <= realmUpgradeFailChance) {
-      this.xp *= (1-((this.realm + 1) / 100));
+      this.xp *= 1 - (this.realm + 1) / 100;
       this.updatePlayerStatusUI();
       this.updateXpBars();
-      this.selectors.playerStatus.breakThroughButton.style.visibility="hidden";
+      this.InterfaceDisplayFailToBreakthrough();
+      this.selectors.playerStatus.breakThroughButton.style.visibility =
+        "hidden";
       this.canCultivate = true;
     } else {
-      this.selectors.playerStatus.breakThroughButton.style.visibility="hidden";
+      this.selectors.playerStatus.breakThroughButton.style.visibility =
+        "hidden";
       this.advanceRealm();
       this.canCultivate = true;
       this.updateFullUI();
     }
   }
-  addClickToBreakthrough(){
-    this.selectors.playerStatus.breakThroughButton.addEventListener("click",()=>{
-      this.clickedBreakthroughButton();
-    });
+  addClickToBreakthrough() {
+    this.selectors.playerStatus.breakThroughButton.addEventListener(
+      "click",
+      () => {
+        this.clearInterface();
+        this.clickedBreakthroughButton();
+      }
+    );
   }
-  winBattle(xpReward,SpiritStonesReward){
-    this.rewardsBattleXp(xpReward)
-    this.spiritStones+=SpiritStonesReward;
+  winBattle(xpReward, SpiritStonesReward) {
+    this.rewardsBattleXp(xpReward);
+    this.spiritStones += SpiritStonesReward;
     this.updateFullUI();
   }
-  rewardsBattleXp(xpReward){
-    const totalXp=xpReward+this.fightXp;
-    if(totalXp>=this.maxFightXp){
-      this.fightXp=0;
+  rewardsBattleXp(xpReward) {
+    const totalXp = xpReward + this.fightXp;
+    if (totalXp >= this.maxFightXp) {
+      this.fightXp = 0;
       this.level++;
-      this.maxFightXp*=2;
-    }
-    else{
-      this.fightXp=totalXp;
+      this.maxFightXp *= 2;
+    } else {
+      this.fightXp = totalXp;
     }
   }
-  clickUpgradeTalentButton(){
-    this.selectors.header.upgradeTalentButton.addEventListener("click",()=>{
-      if(this.spiritStones>=this.calcTalentUpgradePrice()){
-        this.spiritStones-=this.calcTalentUpgradePrice();
+  clickUpgradeTalentButton() {
+    this.selectors.header.upgradeTalentButton.addEventListener("click", () => {
+      if (this.spiritStones >= this.calcTalentUpgradePrice()) {
+        this.spiritStones -= this.calcTalentUpgradePrice();
         this.talent++;
         this.updateHeaderUI();
       }
     });
   }
-  calcTalentUpgradePrice(){
-    return Math.pow(this.talent+(this.talent/100), 1.3)*100
+  calcTalentUpgradePrice() {
+    return Math.pow(this.talent + this.talent / 100, 1.3) * 100;
+  }
+  isBreakthroughNeeded() {
+    return !this.selectors.interFaceOverWrite.acknowledgmentButton.disabled;
+  }
+  setInterfaceOnBrakeThroughExplanation() {
+    this.selectors.interFaceOverWrite.lineOneText.innerHTML =
+      "You are at the pick of the " + this.getRealmName() + " realm!";
+    this.selectors.interFaceOverWrite.lineTwoText.innerHTML =
+      "Try to Breakthrough by pressing the green button";
+    this.selectors.interFaceOverWrite.lineThreeText.innerHTML =
+      "Your success rate of breaking through is: " + (99 - this.realm) + "%";
+    this.selectors.interFaceOverWrite.lineFourText.innerHTML =
+      "Failing will disperse " +
+      (this.realm + 1) +
+      "% of your current cultivation base!";
+    this.selectors.interFaceOverWrite.acknowledgmentButton.style.opacity = "1";
+    this.selectors.interFaceOverWrite.acknowledgmentButton.disabled = false;
+  }
+  clearInterface() {
+    this.selectors.interFaceOverWrite.lineOneText.innerHTML = "";
+    this.selectors.interFaceOverWrite.lineTwoText.innerHTML = "";
+    this.selectors.interFaceOverWrite.lineThreeText.innerHTML = "";
+    this.selectors.interFaceOverWrite.lineFourText.innerHTML = "";
+    this.selectors.interFaceOverWrite.acknowledgmentButton.style.opacity = "0";
+    this.selectors.interFaceOverWrite.acknowledgmentButton.disabled = true;
+  }
+  InterfaceDisplayFailToBreakthrough() {
+    this.clearInterface();
+    this.selectors.interFaceOverWrite.lineOneText.innerHTML = "Failed";
   }
 }
