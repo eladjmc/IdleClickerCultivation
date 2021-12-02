@@ -24,6 +24,7 @@ export default class BattleSystem {
     this.player = player;
     this.stage = 1;
     this.maxStage = 1;
+
     this.createBattle();
   }
 
@@ -105,15 +106,20 @@ export default class BattleSystem {
 
   clickAutoAdvance() {
     this.selectors.autoAdvanceButton.addEventListener("click", () => {
-      
       this.autoAdvanceActive=!this.autoAdvanceActive;
-      if (!this.autoAdvanceButtonActive) {
-        console.log("bla");
+      if (this.autoAdvanceActive) {
+        this.selectors.autoAdvanceButton.style.color = "rgb(11, 253, 3)";
         this.autoAdvanceInterval = setInterval(()=>{
           this.nextStageButtonLogic();
-          this.selectors.autoAdvanceButton.style.color = "rgb(11, 253, 3)";
+          if(this.selectors.autoAdvanceButton.style.color == "rgb(5, 99, 2)"){
+            this.selectors.autoAdvanceButton.style.color = "rgb(11, 253, 3)";
+          }
+          else{
+          this.selectors.autoAdvanceButton.style.color = "rgb(5, 99, 2)";
+          }
         }, 500);
-      } else {
+      } 
+      else {
         clearInterval(this.autoAdvanceInterval);
         this.selectors.autoAdvanceButton.style.color = "black";
       }
