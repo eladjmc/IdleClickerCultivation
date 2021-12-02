@@ -12,6 +12,7 @@ export default class Game {
     this.battleSystem.clickNextStage();
     this.battleSystem.clickPerviousStage();
     this.player.clickUpgradeTalentButton();
+    this.battleSystem.clickAutoAdvance();
   }
   cultivationTimeInterval() {
     setInterval(() => this.player.cultivate(), 500);

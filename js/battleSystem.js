@@ -14,7 +14,10 @@ export default class BattleSystem {
     nextStageButton: document.querySelector(".stage_next_button"),
     previousStageButton: document.querySelector(".stage_back_button"),
     stageText: document.querySelector("#current_stage_text"),
+    autoAdvanceButton: document.querySelector(".auto_advance"),
   };
+  autoAdvanceActive = false;
+  autoAdvanceInterval;
 
   constructor(player) {
     this.attackSidePic = true;
@@ -39,31 +42,22 @@ export default class BattleSystem {
       this.dmgMonster();
     });
   }
+
+
+
   clickNextStage() {
     this.selectors.nextStageButton.addEventListener("click", () => {
-      if (this.stage < this.maxStage) {
-        this.stage++;
-        this.createBattle();
-        this.selectors.stageText.innerHTML = this.stage;
-        if (this.stage === this.maxStage) {
-          this.selectors.nextStageButton.disabled = true;
-          this.selectors.nextStageButton.style.opacity = "0";
-        }
-      }
-      if (this.stage < this.maxStage) {
-        this.selectors.nextStageButton.disabled = false;
-        this.selectors.nextStageButton.style.opacity = "1";
-      }
-      if (this.stage > 1) {
-        this.selectors.previousStageButton.style.opacity = "1";
-        this.selectors.previousStageButton.disabled = false;
-      }
+      this.nextStageButtonLogic();
     });
+
+
   }
   clickPerviousStage() {
     this.selectors.previousStageButton.addEventListener("click", () => {
       if (this.stage > 1) {
         this.stage--;
+        clearInterval(this.autoAdvanceInterval);
+        this.selectors.autoAdvanceButton.style.color = "black";
         this.createBattle();
         this.selectors.stageText.innerHTML = this.stage;
         if (this.stage === 1) {
@@ -77,19 +71,57 @@ export default class BattleSystem {
       }
     });
   }
+  nextStageButtonLogic(){
+    if (this.stage < this.maxStage) {
+      this.stage++;
+      this.createBattle();
+      this.selectors.stageText.innerHTML = this.stage;
+      if (this.stage === this.maxStage) {
+        this.selectors.nextStageButton.disabled = true;
+        this.selectors.nextStageButton.style.opacity = "0";
+      }
+    }
+    if (this.stage < this.maxStage) {
+      this.selectors.nextStageButton.disabled = false;
+      this.selectors.nextStageButton.style.opacity = "1";
+    }
+    if (this.stage > 1) {
+      this.selectors.previousStageButton.style.opacity = "1";
+      this.selectors.previousStageButton.disabled = false;
+    }
+  }
 
   createBattle() {
     this.monster = new Monster(this.calcHpForMonster());
-    this.selectors.monsterMaxHpText.innerHTML =
-      this.player.displayFixedNumber(this.monster.maxHp);
+    this.selectors.monsterMaxHpText.innerHTML = this.player.displayFixedNumber(
+      this.monster.maxHp
+    );
     this.selectors.monsterCurrentHpText.innerHTML =
-    this.player.displayFixedNumber(this.monster.hp);
+      this.player.displayFixedNumber(this.monster.hp);
     this.selectors.monstersHpBar.style.width = "100%";
     this.monster.setBattleXPreward(this.stage * 10);
   }
 
+
+  clickAutoAdvance() {
+    this.selectors.autoAdvanceButton.addEventListener("click", () => {
+      
+      this.autoAdvanceActive=!this.autoAdvanceActive;
+      if (!this.autoAdvanceButtonActive) {
+        console.log("bla");
+        this.autoAdvanceInterval = setInterval(()=>{
+          this.nextStageButtonLogic();
+          this.selectors.autoAdvanceButton.style.color = "rgb(11, 253, 3)";
+        }, 500);
+      } else {
+        clearInterval(this.autoAdvanceInterval);
+        this.selectors.autoAdvanceButton.style.color = "black";
+      }
+    });
+  }
+
   calcHpForMonster() {
-    return Math.pow(this.stage,1.4) * 10;
+    return Math.pow(this.stage, 1.4) * 10;
   }
 
   rewardPlayer() {
@@ -98,7 +130,8 @@ export default class BattleSystem {
 
   dmgMonster() {
     const hpLeft = this.monster.receiveDmg(this.player.calcClickPower());
-    this.selectors.monsterCurrentHpText.innerHTML = this.player.displayFixedNumber(hpLeft);
+    this.selectors.monsterCurrentHpText.innerHTML =
+      this.player.displayFixedNumber(hpLeft);
     this.selectors.monstersHpBar.style.width =
       this.monster.calcHpPercentageLeft() + "%";
     if (this.monster.isDead()) {

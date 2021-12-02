@@ -12,6 +12,7 @@ export default class Interface {
     this.resetInterface();
     this.listeners();
   }
+
   resetInterface() {
     this.selectors.lineOneText.innerHTML = "";
     this.selectors.lineTwoText.innerHTML = "";
