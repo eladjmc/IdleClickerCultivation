@@ -29,6 +29,7 @@ export default class Player {
       acknowledgmentButton: document.querySelector(".acknowledged_button"),
     },
   };
+  BIG_NUMBER_SYMBOLS = ["", "k", "m", "B", "T", "Q", "P"];
 
   constructor() {
     this.selectors.interFaceOverWrite.acknowledgmentButton.disabled = true;
@@ -40,8 +41,8 @@ export default class Player {
     this.maxFightXp = 10;
     this.level = 1;
     this.realm = 1;
-    this.spiritStones = 1000;
-    this.talent = 21;
+    this.spiritStones = 0;
+    this.talent = 1;
     this.BaseClickPower = 0.5;
     this.itemExtraDmg = 0;
     this.itemExtraCultivationXp = 0;
@@ -106,17 +107,16 @@ export default class Player {
     }
     this.selectors.header.talentLevel.innerHTML = this.getTalentLevelName();
     this.selectors.header.spiritStonesAmount.innerHTML =
-      Math.round(this.spiritStones * 100) / 100;
+      this.displayFixedNumber(this.spiritStones);
   }
 
   updatePlayerStatusUI() {
-    this.selectors.playerStatus.powerNumberDisplay.innerHTML =
-      Math.round(this.calcClickPower() * 100) / 100;
-    this.selectors.playerStatus.exp.innerHTML = this.xp;
-    this.selectors.playerStatus.maxExp.innerHTML = this.maxXp;
+    this.selectors.playerStatus.powerNumberDisplay.innerHTML =this.displayFixedNumber(this.calcClickPower())
+    this.selectors.playerStatus.exp.innerHTML = this.displayFixedNumber(this.xp);
+    this.selectors.playerStatus.maxExp.innerHTML = this.displayFixedNumber(this.maxXp);
     this.selectors.playerStatus.battleExp.innerHTML =
-      Math.round(100 * this.fightXp) / 100;
-    this.selectors.playerStatus.maxBattleExp.innerHTML = this.maxFightXp;
+      this.displayFixedNumber(this.fightXp);
+    this.selectors.playerStatus.maxBattleExp.innerHTML = this.displayFixedNumber(this.maxFightXp);
   }
 
   updateXpBars() {
@@ -289,5 +289,35 @@ export default class Player {
   InterfaceDisplayFailToBreakthrough() {
     this.clearInterface();
     this.selectors.interFaceOverWrite.lineOneText.innerHTML = "Failed";
+  }
+
+  displayFixedNumber(number) {
+    // what tier? (determines  number symbol)
+    const tier = (Math.log10(Math.abs(number)) / 3) | 0;
+
+    // if zero, we don't need a suffix but still fix the number itself
+    if (tier == 0){
+      if(number.toFixed(1).slice(-1)!=0){
+      return number.toFixed(1);
+      }
+      return number.toFixed();
+     }
+
+    // get suffix and determine scale
+    const suffix = this.BIG_NUMBER_SYMBOLS[tier];
+    const scale = Math.pow(10, tier * 3);
+
+    // scale the number
+    const scaled = number / scale;
+
+    // format number and add suffix
+    if (scaled.toFixed(2).slice(-1) == "0") {
+      if (scaled.toFixed(1).slice(-1) == "0") {
+       return scaled.toFixed() + suffix;
+      }
+      return scaled.toFixed(1) + suffix;
+    } else {
+      return scaled.toFixed(2) + suffix;
+    }
   }
 }

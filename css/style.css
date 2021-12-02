@@ -523,3 +523,18 @@ main {
   visibility: hidden;
   transition: all 0.2s ease-out;
 }
+.stage_next_button_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 25%;
+}
+.auto_advance{
+  width: 40%;
+  height: 90%;
+  background-color: #38ad5b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

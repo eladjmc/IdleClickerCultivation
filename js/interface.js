@@ -27,7 +27,7 @@ export default class Interface {
     const TalentLevelName = this.player.getTalentLevelName();
     this.selectors.lineOneText.innerHTML = "Talent grade: " + TalentLevelName;
     this.selectors.lineTwoText.innerHTML =
-    "Price to upgrade: " + TalentPrice.toFixed(1) + " SpiritStones.";
+    "Price to upgrade: " + this.player.displayFixedNumber(TalentPrice) + " SpiritStones.";
   }
   listeners() {
     this.player.selectors.header.upgradeTalentButton.addEventListener(

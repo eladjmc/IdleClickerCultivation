@@ -81,15 +81,15 @@ export default class BattleSystem {
   createBattle() {
     this.monster = new Monster(this.calcHpForMonster());
     this.selectors.monsterMaxHpText.innerHTML =
-      Math.round(this.monster.maxHp * 100) / 100;
+      this.player.displayFixedNumber(this.monster.maxHp);
     this.selectors.monsterCurrentHpText.innerHTML =
-      Math.round(this.monster.hp * 100) / 100;
+    this.player.displayFixedNumber(this.monster.hp);
     this.selectors.monstersHpBar.style.width = "100%";
     this.monster.setBattleXPreward(this.stage * 10);
   }
 
   calcHpForMonster() {
-    return this.stage * 10;
+    return Math.pow(this.stage,1.4) * 10;
   }
 
   rewardPlayer() {
@@ -98,7 +98,7 @@ export default class BattleSystem {
 
   dmgMonster() {
     const hpLeft = this.monster.receiveDmg(this.player.calcClickPower());
-    this.selectors.monsterCurrentHpText.innerHTML = hpLeft;
+    this.selectors.monsterCurrentHpText.innerHTML = this.player.displayFixedNumber(hpLeft);
     this.selectors.monstersHpBar.style.width =
       this.monster.calcHpPercentageLeft() + "%";
     if (this.monster.isDead()) {
@@ -131,9 +131,9 @@ export default class BattleSystem {
   revealRewardTexts() {
     this.randomizeRewardTextLocation();
     this.selectors.battleXpRewardText.innerHTML =
-      "XP+" + this.monster.battleXpReward;
+      "XP+" + this.player.displayFixedNumber(this.monster.battleXpReward);
     this.selectors.spiritStonesRewardText.innerHTML =
-      "SS+" + this.monster.spiritStonesReward;
+      "SS+" + this.player.displayFixedNumber(this.monster.spiritStonesReward);
     this.selectors.battleXpRewardText.style.opacity = "1";
     this.selectors.spiritStonesRewardText.style.opacity = "1";
     setTimeout(() => {
