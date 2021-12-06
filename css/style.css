@@ -361,10 +361,12 @@ main {
   align-items: center;
 }
 #monster_pic {
-  height: 65%;
+  height: 20rem;
   animation: shake 5.1s;
   /* When the animation is finished, start again */
   animation-iteration-count: infinite;
+  opacity:1;
+  transition: all 0.2s ease-out;
 }
 
 /*                   Shake picture                       */
@@ -512,6 +514,7 @@ main {
   z-index: 5;
   visibility: hidden;
   transition: all 0.2s ease-out;
+  pointer-events: none;
 }
 
 #slash_2 {
@@ -522,6 +525,7 @@ main {
   z-index: 5;
   visibility: hidden;
   transition: all 0.2s ease-out;
+  pointer-events: none;
 }
 .stage_next_button_container{
   display: flex;

@@ -41,7 +41,7 @@ export default class Player {
     this.maxFightXp = 10;
     this.level = 1;
     this.realm = 1;
-    this.spiritStones = 0;
+    this.spiritStones = 1000000;
     this.talent = 1;
     this.BaseClickPower = 0.5;
     this.itemExtraDmg = 0;
@@ -297,10 +297,7 @@ export default class Player {
 
     // if zero, we don't need a suffix but still fix the number itself
     if (tier == 0){
-      if(number.toFixed(1).slice(-1)!=0){
-      return number.toFixed(1);
-      }
-      return number.toFixed();
+      return number.toFixed(number.toFixed(1).slice(-1)!=0? 1 :undefined);
      }
 
     // get suffix and determine scale
