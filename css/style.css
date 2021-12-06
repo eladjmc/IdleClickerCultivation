@@ -361,12 +361,12 @@ main {
   align-items: center;
 }
 #monster_pic {
-  height: 20rem;
+  height: 19rem;
   animation: shake 5.1s;
   /* When the animation is finished, start again */
   animation-iteration-count: infinite;
   opacity:1;
-  transition: all 0.2s ease-out;
+  transition: all 0.2s linear;
 }
 
 /*                   Shake picture                       */
@@ -550,4 +550,11 @@ main {
 .auto_advance:hover{
   border: 1px solid rgb(11, 253, 3);
 }
-
+#spiritstone_icon_img{
+  height: 1.7rem;
+  width: 1.7rem;
+}
+#talent_icon_img{
+  height: 1.7rem;
+  width: 1.7rem;
+}

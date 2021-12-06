@@ -12,12 +12,13 @@ export default class Monster {
     this.battleXpReward += increasedBy * 0.5;
   }
   generateMonsterPicture(){
-    const monsterID = (Math.floor(Math.random() * 11)+1);
-    this.selectors.monsterPicture.src="./resources/monsters/monster_"+monsterID+".png"
     this.selectors.monsterPicture.style.opacity="0";
     setTimeout(()=>{
       this.selectors.monsterPicture.style.opacity="1";
-    },200);
+      const monsterID = (Math.floor(Math.random() * 11)+1);
+      this.selectors.monsterPicture.src="./resources/monsters/monster_"+monsterID+".png"
+    },300);
+
   }
   receiveDmg(dmgAmount) {
     if (this.hp <= dmgAmount) {
@@ -30,10 +31,6 @@ export default class Monster {
 
   isDead() {
     if (this.hp === 0) {
-      this.selectors.monsterPicture.style.opacity="0";
-      setTimeout(()=>{
-        this.selectors.monsterPicture.style.opacity="1";
-      },100);
       return true;
     }
     return false;

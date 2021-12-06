@@ -24,7 +24,6 @@ export default class BattleSystem {
     this.player = player;
     this.stage = 1;
     this.maxStage = 1;
-
     this.createBattle();
   }
 
@@ -58,6 +57,7 @@ export default class BattleSystem {
       if (this.stage > 1) {
         this.stage--;
         clearInterval(this.autoAdvanceInterval);
+        this.autoAdvanceActive=false;
         this.selectors.autoAdvanceButton.style.color = "black";
         this.createBattle();
         this.selectors.stageText.innerHTML = this.stage;
@@ -117,7 +117,7 @@ export default class BattleSystem {
           else{
           this.selectors.autoAdvanceButton.style.color = "rgb(5, 99, 2)";
           }
-        }, 500);
+        }, 200);
       } 
       else {
         clearInterval(this.autoAdvanceInterval);
@@ -150,7 +150,9 @@ export default class BattleSystem {
       this.monster.battleXpReward,
       this.monster.spiritStonesReward
     );
+    if(!this.autoAdvanceActive){ // so i dont create a battle and go to next battle but only go to next.
     this.createBattle();
+    }
     if (this.stage === this.maxStage) {
       this.maxStage++;
       this.selectors.nextStageButton.style.opacity = "1";
