@@ -36,16 +36,17 @@ export default class Player {
     this.xpFloatLastUsedIndex = 0;
     this.xp = 0;
     this.maxXp = 10;
-    this.baseCultivationXpGain = 0.1;
+    this.baseCultivationXpGain = 1.1;
     this.fightXp = 0;
     this.maxFightXp = 10;
     this.level = 1;
     this.realm = 1;
     this.spiritStones = 1000000;
+    this.spiritStonesMultiplier=1;
     this.talent = 1;
     this.BaseClickPower = 0.5;
     this.itemExtraDmg = 0;
-    this.itemExtraCultivationXp = 0;
+    this.itemCultivationXpMultiplier = 1;
     this.expMultiplayer = 1.4;
     this.canCultivate = true;
     this.addClickToBreakthrough();
@@ -133,10 +134,10 @@ export default class Player {
   }
 
   calcCultivationExp() {
-    var talentGradeMulti = Math.floor(this.talent / 4) + 1;
+    var talentGradeMulti = this.talent + 1;
     return (
-      this.baseCultivationXpGain * this.talent * talentGradeMulti +
-      this.itemExtraCultivationXp
+      (Math.pow(this.baseCultivationXpGain,talentGradeMulti))*
+      this.itemCultivationXpMultiplier
     );
   }
   showFloatXpText(xpGain) {
@@ -236,7 +237,7 @@ export default class Player {
   }
   winBattle(xpReward, SpiritStonesReward) {
     this.rewardsBattleXp(xpReward);
-    this.spiritStones += SpiritStonesReward;
+    this.spiritStones += (SpiritStonesReward)*this.spiritStonesMultiplier;
     this.updateFullUI();
   }
   rewardsBattleXp(xpReward) {
@@ -255,9 +256,27 @@ export default class Player {
         this.spiritStones -= this.calcTalentUpgradePrice();
         this.talent++;
         this.updateHeaderUI();
+        //update interface after upgrading talent
+        this.updateInterfaceAfterUpgradeTalent();
       }
     });
   }
+
+  updateInterfaceAfterUpgradeTalent(){
+    if (this.isBreakthroughNeeded()) {
+      return;
+    }
+    this.clearInterface();
+    const TalentPrice = this.calcTalentUpgradePrice();
+    const TalentLevelName = this.getTalentLevelName();
+    this.selectors.interFaceOverWrite.lineOneText.innerHTML ="Talent can determine how much energy you can absorb through ";
+    this.selectors.interFaceOverWrite.lineTwoText.innerHTML ="cultivation.";
+    this.selectors.interFaceOverWrite.lineThreeText.innerHTML = "Current talent grade: " + TalentLevelName;
+    this.selectors.interFaceOverWrite.lineFourText.innerHTML =
+      "Upgrade cost: " +
+      this.displayFixedNumber(TalentPrice);
+  }
+  
   calcTalentUpgradePrice() {
     return Math.pow(this.talent + this.talent / 100, 1.3) * 100;
   }

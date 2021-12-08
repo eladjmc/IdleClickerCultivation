@@ -30,7 +30,6 @@
                 <div class="talent_level_tag">Talent grade:</div>
                 <div class="talent_level">poor - 1</div>
             </div>
-            <button class="upgrade_talent_button">+</button>
         </div>
         <div class="spirit_stone_container sub_info_container">
             <img src="./resources/Shop-icons/spirit_stone.gif" id="spiritstone_icon_img" alt="">
@@ -88,7 +87,7 @@
                         <span>Stage:</span>
                         <span id="current_stage_text">1</span>
                     </div>
-                   
+
                     <div class="stage_next_button_container">
                         <button class="stage_next_button">Next</button>
                         <button class="auto_advance">Auto</button>
@@ -130,11 +129,72 @@
             </div>
         </div>
         <div class="inventory_shop">
-            <span>Items shop</span>
+            <span>Shop and Upgrades</span>
             <div class="shop_container">
-                <div class="scrolls"></div>
-                <div class="items"></div>
-                <div class="boosts"></div>
+                <div class="sub_shop_container">
+                    <div class="upgrades shop_group_title">
+                        <span style="font-size: 1.2rem; font-weight: bold; color: rgb(129, 110, 141);">UPGRADES</span>
+                        <div class="auto_clicker_container shop_item_container">
+                            <img src="./resources/Shop-icons/clicker.gif" alt="" id="auto_clicker_icon">
+                            <span>Auto Clicker</span>
+                            <button class="level_up_auto_clicker_button shop_upgrade_button">+</button>
+                        </div>
+                        <div class="talent_upgrade_container shop_item_container">
+                            <img src="./resources/Shop-icons/opened_Scroll.gif" alt="" id="talent_icon">
+                            <span>Upgrade Talent</span>
+                            <button class="upgrade_talent_button shop_upgrade_button">+</button>
+                        </div>
+                        <div class="spirit_stones_gain_upgrade_container shop_item_container">
+                            <img src="./resources/Shop-icons/diamond.gif" alt="" id="diamond_icon">
+                            <span>Market Demand</span>
+                            <button class="upgrade_spirit_stones_button shop_upgrade_button">+</button>
+                        </div>
+                        <div class="cultivation_techniques shop_group_title">
+                            <span style="font-size: 1.2rem; font-weight: bold; color: rgb(129, 110, 141);">CULTIVATION
+                                TECHNIQUES</span>
+                            <div class="mortal_tecnique_container shop_item_container">
+                                <img src="./resources/Shop-icons/Scroll.gif" alt="" class="scroll_img" id="mortal_scroll">
+                                <span>Mortal Grade</span>
+                                <button class="mortal_grade_scroll_button item_buy_button">Buy</button>
+                            </div>
+                            <div class="earth_tecnique_container shop_item_container">
+                                <img src="./resources/Shop-icons/Scroll_3.gif" alt="" class="scroll_img" id="earth_scroll">
+                                <span>Earth Grade</span>
+                                <button class="earth_grade_scroll_button item_buy_button">Buy</button>
+                            </div>
+                            <div class="haven_tecnique_container shop_item_container">
+                                <img src="./resources/Shop-icons/Scroll_4.gif" alt="" class="scroll_img" id="haven_scroll">
+                                <span>Haven Grade</span>
+                                <button class="haven_grade_scroll_button item_buy_button">Buy</button>
+                            </div>
+                            <div class="divine_tecnique_container shop_item_container">
+                                <img src="./resources/Shop-icons/Scroll_divine.gif" alt="" class="scroll_img" id="divine_scroll">
+                                <span>Divine Grade</span>
+                                <button class="divine_grade_scroll_button item_buy_button">Buy</button>
+                            </div>
+                        </div>
+                        <div class="magic_treasures shop_group_title">
+                            <span style="font-size: 1.2rem; font-weight: bold; color: rgb(129, 110, 141);">MAGIC TREASURES</span>
+                            <div class="flying_sword_container shop_item_container">
+                                <img src="./resources/Shop-icons/sword.gif" alt="" id="flying_sword_icon">
+                                <span>Flying Sword</span>
+                                <button class="flying_sword_buy_button item_buy_button">Buy</button>
+                            </div>
+                            <div class="berserk_pill_container shop_item_container">
+                                <img src="./resources/Shop-icons/pill_3.gif" alt="" id="berserk_pill_icon">
+                                <span>Berserk Pill</span>
+                                <button class="upgrade_talent_button item_buy_button">Buy</button>
+                            </div>
+                            <div class="frenzy_potion_container shop_item_container">
+                                <img src="./resources/Shop-icons/potion.gif" alt="" id="frenzy_potion_icon">
+                                <span>Frenzy Potion</span>
+                                <button class="frenzy_potion_buy_button item_buy_button">Buy</button>
+                            </div>
+
+                    </div>
+                    <div class="scrolls"></div>
+                    <div class="items"></div>
+                </div>
             </div>
         </div>
     </div>

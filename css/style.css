@@ -30,7 +30,7 @@ main {
 .portrait_container > img {
   height: fit-content;
   width: 5.2rem;
-  border: 3px solid rgb(30, 96, 145);
+  border: 1px solid rgb(30, 96, 145);
 }
 .header_containers {
   width: 20%;
@@ -59,25 +59,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.upgrade_talent_button {
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: rgb(221, 222, 255);
-  color: rgb(49, 34, 68);
-  border: 2px solid rgb(26, 1, 41);
-  border-radius: 20px;
-  margin-left: 0.5rem;
-}
-.upgrade_talent_button:hover {
-  color: rgb(221, 222, 255);
-  background-color: rgb(108, 75, 151);
-}
-.upgrade_talent_button:active {
-  background-color: rgb(221, 222, 255);
-  color: rgb(49, 34, 68);
 }
 
 .main_container {
@@ -108,11 +89,7 @@ main {
   font-size: 1.3rem;
   font-weight: bold;
 }
-.interface_text_line_1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .interface_line_4 {
   width: 100%;
@@ -144,6 +121,8 @@ main {
 }
 .inventory_shop {
   background-color: rgb(0, 119, 121);
+  height: 100%;
+  width: 100%;
 }
 .player_cultivation {
   display: flex;
@@ -361,7 +340,7 @@ main {
   align-items: center;
 }
 #monster_pic {
-  height: 19rem;
+  height: 17rem;
   animation: shake 5.1s;
   /* When the animation is finished, start again */
   animation-iteration-count: infinite;
@@ -557,4 +536,118 @@ main {
 #talent_icon_img{
   height: 1.7rem;
   width: 1.7rem;
+}
+
+.shop_container{
+  height: 84%;
+  width: 80%;
+  background-color: rgb(77, 25, 77);
+  border: 7px dotted rgb(49, 34, 68);
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+.sub_shop_container{
+  width : 100%;
+  display: flex;
+  justify-content: center;
+  
+  
+}
+.shop_group_title{
+  width :100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shop_item_container{
+  width :85%;
+  background-color: rgb(49, 34, 68);
+  border : 1px solid black;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.inventory_shop{
+  color: rgb(199, 217, 255);
+  font-size: 1.5rem;
+  font-family: cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#auto_clicker_icon{
+  height: 2.5rem;
+  margin-left: 0.5rem;
+
+}
+.shop_upgrade_button{
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+  border: 2px solid rgb(26, 1, 41);
+  border-radius: 20px;
+  margin-right: 0.5rem;
+}
+
+.shop_upgrade_button:hover {
+  color: rgb(221, 222, 255);
+  background-color: rgb(108, 75, 151);
+}
+.shop_upgrade_button:active {
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+}
+#talent_icon{
+  width: 1.8rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+  
+}
+#diamond_icon{
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+}
+.scroll_img{
+  width: 2.5rem;
+  margin-left: 0.5rem;
+}
+.item_buy_button{
+  width: 2.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+  border: 2px solid rgb(26, 1, 41);
+  margin-right: 0.5rem;
+}
+
+.item_buy_button:hover {
+  color: rgb(221, 222, 255);
+  background-color: rgb(108, 75, 151);
+}
+.item_buy_button:active {
+  background-color: rgb(221, 222, 255);
+  color: rgb(49, 34, 68);
+}
+#flying_sword_icon{
+  width: 2.5rem;
+  margin-left: 0.4rem;
+}
+#berserk_pill_icon{
+  width: 1.5rem;
+  margin-left: 0.7rem;
+}
+#frenzy_potion_icon{
+  width: 2rem;
+  margin-left: 0.4rem;
 }
