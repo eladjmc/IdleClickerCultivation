@@ -11,7 +11,7 @@ export default class Monster {
   setBattleXPreward(increasedBy) {
     this.battleXpReward += increasedBy * 0.5;
   }
-  generateMonsterPicture(){
+  async generateMonsterPicture(){
     this.selectors.monsterPicture.style.opacity="0";
     setTimeout(()=>{
       this.selectors.monsterPicture.style.opacity="1";

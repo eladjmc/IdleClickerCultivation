@@ -25,6 +25,7 @@ export default class BattleSystem {
     this.stage = 1;
     this.maxStage = 1;
     this.createBattle();
+    this.autoAttackInterval();
   }
 
   clickOnMonster() {
@@ -134,8 +135,21 @@ export default class BattleSystem {
     this.player.spiritStones += this.monster.spiritStonesReward;
   }
 
-  dmgMonster() {
-    const hpLeft = this.monster.receiveDmg(this.player.calcClickPower());
+  autoAttackInterval(){
+    setInterval(()=>{
+      if(!this.player.isAutoAttacking){
+        return;
+      }
+      this.dmgMonster(true);
+    },1000)
+  }
+
+  dmgMonster(isFromAutoAttack=false) {
+    let dmgMult=1;
+    if(isFromAutoAttack){
+      dmgMult=this.player.autoClickerDmg;
+    }
+    const hpLeft = this.monster.receiveDmg(dmgMult*this.player.calcClickPower());
     this.selectors.monsterCurrentHpText.innerHTML =
       this.player.displayFixedNumber(hpLeft);
     this.selectors.monstersHpBar.style.width =

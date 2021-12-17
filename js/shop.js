@@ -95,7 +95,42 @@ export default class Shop {
 
   constructor(player) {
     this.player = player;
+    this.clickBuyMortalScroll();
+    this.clickUpgradeAutoClicker();
   }
+
+  clickUpgradeAutoClicker() {
+    this.selectors.upgradesButtons.autoClickerUpgradeButton.addEventListener(
+      "click",
+      () => {
+        if (this.itemList.autoClicker.price <= this.player.spiritStones) {
+          this.player.spiritStones -= this.itemList.autoClicker.price;
+          this.player.isAutoAttacking = true;
+          this.itemList.autoClicker.level++;
+          this.itemList.autoClicker.price = Math.pow(
+            this.itemList.autoClicker.price,
+            1.2
+          );
+
+          if (this.itemList.autoClicker.level > 1) {
+            this.itemList.autoClicker.dmg += 0.3;
+          }
+          this.player.autoClickerDmg=this.itemList.autoClicker.dmg;
+          this.player.clearInterface();
+        }
+      }
+    );
+  }
+
+  disableScrollsButtons() {
+    const scrolls = Object.keys(this.selectors.cultivationTechniquesButtons);
+    scrolls.forEach((scroll) => {
+      if (scroll !== "mortalScroll") {
+        this.selectors.cultivationTechniquesButtons[scroll].disabled = true;
+      }
+    });
+  }
+
   buySpiritStoneUpgrade() {
     if (this.itemList.spiritStonesUpgrade.price <= this.player.spiritStones) {
       this.player.spiritStones -= this.itemList.spiritStonesUpgrade.price;
@@ -119,8 +154,55 @@ export default class Shop {
       this.selectors.cultivationTechniquesButtons[scrollName].disabled = true;
       this.selectors.cultivationTechniquesButtons[scrollName].style.color =
         "rgb(253, 75, 253)";
-        this.selectors.cultivationTechniquesButtons[scrollName].style.backgroundColor =
-        "rgb(29, 9, 29)";
+      this.selectors.cultivationTechniquesButtons[
+        scrollName
+      ].style.backgroundColor = "rgb(29, 9, 29)";
+      this.player.clearInterface();
+      return;
     }
+  }
+  clickBuyMortalScroll() {
+    this.selectors.cultivationTechniquesButtons.mortalScroll.addEventListener(
+      "click",
+      () => {
+        this.buyMortalTechnique("mortalScroll");
+        if (this.itemList["mortalScroll"].owned) {
+          this.selectors.cultivationTechniquesButtons.earthScroll.disabled = false;
+          this.clickBuyEarthScroll();
+        }
+      }
+    );
+  }
+  clickBuyEarthScroll() {
+    this.selectors.cultivationTechniquesButtons.earthScroll.addEventListener(
+      "click",
+      () => {
+        this.buyMortalTechnique("earthScroll");
+        if (this.itemList["earthScroll"].owned) {
+          this.selectors.cultivationTechniquesButtons.havenScroll.disabled = false;
+          this.clickBuyHavenScroll();
+        }
+      }
+    );
+  }
+  clickBuyHavenScroll() {
+    this.selectors.cultivationTechniquesButtons.havenScroll.addEventListener(
+      "click",
+      () => {
+        this.buyMortalTechnique("havenScroll");
+        if (this.itemList["havenScroll"].owned) {
+          this.selectors.cultivationTechniquesButtons.divineScroll.disabled = false;
+          this.clickBuyDivineScroll();
+        }
+      }
+    );
+  }
+  clickBuyDivineScroll() {
+    this.selectors.cultivationTechniquesButtons.divineScroll.addEventListener(
+      "click",
+      () => {
+        this.buyMortalTechnique("divineScroll");
+      }
+    );
   }
 }

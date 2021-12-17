@@ -140,8 +140,8 @@ main {
   position: absolute;
   color: rgb(255, 166, 0);
   font-weight: bold;
-  font-size: 1.2rem;
-  font-family: "Brush Script MT", cursive;
+  font-size: 0.9rem;
+  font-family: cursive;
   transition: opacity 0.2s ease-in-out;
   opacity: 0;
 }
@@ -223,9 +223,11 @@ main {
 }
 .power_xp_text {
   position: absolute;
-  left: 40%;
+  left: 0%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 5;
 }
 
 .power_xp_bar {

@@ -50,6 +50,8 @@ export default class Player {
     this.expMultiplayer = 1.4;
     this.canCultivate = true;
     this.addClickToBreakthrough();
+    this.isAutoAttacking=false;
+    this.autoClickerDmg=0;
   }
   calcExpPercentageToString(xp, maxXp) {
     var xpPercentageNumber = (xp / maxXp) * 100;
@@ -143,7 +145,7 @@ export default class Player {
   showFloatXpText(xpGain) {
     this.selectors.playerStatus.xpFloatText[
       this.xpFloatLastUsedIndex
-    ].innerHTML = xpGain.toFixed(2);
+    ].innerHTML = this.displayFixedNumber(xpGain);
     this.selectors.playerStatus.xpFloatText[
       this.xpFloatLastUsedIndex
     ].style.opacity = "1";
