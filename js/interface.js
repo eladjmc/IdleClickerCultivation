@@ -45,8 +45,8 @@ export default class Interface {
     this.selectors.lineOneText.innerHTML =
       this.shop.itemList.autoClicker.explanationL1;
     this.selectors.lineTwoText.innerHTML =
-      this.shop.itemList.autoClicker.explanationL2 +this.player.displayFixedNumber(
-      this.shop.itemList.autoClicker.dmg * 100) +
+      this.shop.itemList.autoClicker.explanationL2 +
+      this.player.displayFixedNumber(this.shop.itemList.autoClicker.dmg * 100) +
       "%";
     this.selectors.lineThreeText.innerHTML =
       "Current level: " + this.shop.itemList.autoClicker.level;
@@ -121,7 +121,26 @@ export default class Interface {
         }
       );
     });
+    //upgrade spiritStones hover
+    this.shop.selectors.upgradesButtons.spiritStonesUpgradeButton.addEventListener(
+      "mouseover",
+      () => {
+        this.hoverSpiritStonesUpgrade();
+      }
+    );
+    //upgrade SpiritStones out from hover
+    this.shop.selectors.upgradesButtons.spiritStonesUpgradeButton.addEventListener(
+      "mouseout",
+      () => {
+        if (this.player.isBreakthroughNeeded()) {
+          return;
+        }
+        this.resetInterface();
+      }
+    );
+    // buy flying sword hover
   }
+
   hoverScrollsButtons(scroll) {
     if (this.player.isBreakthroughNeeded()) {
       return;
@@ -155,5 +174,18 @@ export default class Interface {
       }
     });
     return canBuyFlag;
+  }
+  hoverSpiritStonesUpgrade() {
+    this.selectors.lineOneText.innerHTML =
+      this.shop.itemList.spiritStonesUpgrade.explanationL1;
+    this.selectors.lineTwoText.innerHTML =
+      this.shop.itemList.spiritStonesUpgrade.explanationL2;
+    this.selectors.lineThreeText.innerHTML =
+      "Current level: " + this.shop.itemList.spiritStonesUpgrade.level;
+    this.selectors.lineFourText.innerHTML =
+      "Upgrade Price: " +
+      this.player.displayFixedNumber(
+        this.shop.itemList.spiritStonesUpgrade.price
+      );
   }
 }

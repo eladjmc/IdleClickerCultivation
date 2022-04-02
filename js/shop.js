@@ -34,7 +34,7 @@ export default class Shop {
       price: 500,
       level: 0,
       multiplier: 1,
-      explanationL1: "Increase the amount of spirit Stones you can get",
+      explanationL1: "10% increase in the amount of spirit Stones you can get,",
       explanationL2: "by selling materials for higher than market prices",
     },
     flyingSword: {
@@ -97,6 +97,7 @@ export default class Shop {
     this.player = player;
     this.clickBuyMortalScroll();
     this.clickUpgradeAutoClicker();
+    this.clickUpgradeSpiritStones();
   }
 
   clickUpgradeAutoClicker() {
@@ -115,7 +116,7 @@ export default class Shop {
           if (this.itemList.autoClicker.level > 1) {
             this.itemList.autoClicker.dmg += 0.3;
           }
-          this.player.autoClickerDmg=this.itemList.autoClicker.dmg;
+          this.player.autoClickerDmg = this.itemList.autoClicker.dmg;
           this.player.clearInterface();
         }
       }
@@ -132,15 +133,22 @@ export default class Shop {
   }
 
   buySpiritStoneUpgrade() {
-    if (this.itemList.spiritStonesUpgrade.price <= this.player.spiritStones) {
+    if (this.player.spiritStones >= this.itemList.spiritStonesUpgrade.price) {
       this.player.spiritStones -= this.itemList.spiritStonesUpgrade.price;
-      this.itemList.spiritStonesUpgrade.price *= 1.4;
-      this.itemList.spiritStonesUpgrade.multiplier += 0.1;
-      this.player.spiritStonesMultiplier *=
+      this.itemList.spiritStonesUpgrade.price =
+        this.itemList.spiritStonesUpgrade.price * 1.8;
+      this.itemList.spiritStonesUpgrade.multiplier *= 1.1;
+      this.player.spiritStonesMultiplier =
         this.itemList.spiritStonesUpgrade.multiplier;
       this.itemList.spiritStonesUpgrade.level++;
+      this.player.clearInterface();
     }
   }
+
+  clickBuyFlyingSword(){
+    //TODO
+  }
+
   buyMortalTechnique(scrollName) {
     if (this.itemList[scrollName].owned) {
       return;
@@ -205,4 +213,17 @@ export default class Shop {
       }
     );
   }
+  clickUpgradeSpiritStones() {
+    this.selectors.upgradesButtons.spiritStonesUpgradeButton.addEventListener(
+      "click",
+      () => {
+        this.buySpiritStoneUpgrade();
+      }
+    );
+  }
+  // clickBuyFlyingSword(){
+  //   this.selectors.magicTreasuresButtons.flyingSwordBuyButton.addEventListener("click",()=>{
+  //     this.clickBuyFlyingSword();
+  //   });
+  // }
 }

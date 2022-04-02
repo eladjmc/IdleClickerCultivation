@@ -188,7 +188,7 @@ export default class BattleSystem {
     this.selectors.battleXpRewardText.innerHTML =
       "XP+" + this.player.displayFixedNumber(this.monster.battleXpReward);
     this.selectors.spiritStonesRewardText.innerHTML =
-      "SS+" + this.player.displayFixedNumber(this.monster.spiritStonesReward);
+      "SS+" + this.player.displayFixedNumber(this.monster.spiritStonesReward*this.player.spiritStonesMultiplier);
     this.selectors.battleXpRewardText.style.opacity = "1";
     this.selectors.spiritStonesRewardText.style.opacity = "1";
     setTimeout(() => {
