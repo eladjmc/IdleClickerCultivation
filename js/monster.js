@@ -16,7 +16,7 @@ export default class Monster {
     setTimeout(()=>{
       this.selectors.monsterPicture.style.opacity="1";
       const monsterID = (Math.floor(Math.random() * 11)+1);
-      this.selectors.monsterPicture.src="resources/Monsters/monster_"+monsterID+".png"
+      this.selectors.monsterPicture.src="./resources/Monsters/monster_"+monsterID+".png"
     },300);
 
   }
